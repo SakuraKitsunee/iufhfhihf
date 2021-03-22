@@ -1,320 +1,54 @@
-<!DOCTYPE html>
-<script src='/JS/sendCreds.js'></script>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Arena Points Host</title>
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
-<link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Josefin+Slab:100'><link rel="stylesheet" href="/CSS/style.css/">
 
-</head>
-<div class="main"><h1>Arena Points Hosting</h1><br><h2>This site allows you to enter your credentials and get arena points once every 2 minutes or so, without even needing to be on the page!</h2><br><h1>Give it a try below!</h1><br><h6>Made by and licensed to <a href='https://github.com/Prodigy-Hacking'>ProdigyMathGameHacking</a>.</h6><br><h5><strong>Note:</strong> There is a ratelimit of 1 request a minute for security reasons. Any further inquiries can be answered at our <a href="https://discord.gg/XQDfbfq">Discord</a>.</h5></div>
-<button id="startbtn" onmouseover="document.getElementById('startbtn').style.background = 'black';document.getElementById('startbtn').style.color = 'white'" onmouseout="document.getElementById('startbtn').style.background = 'white';document.getElementById('startbtn').style.color = 'black'" onclick="submit()" class="btn">Start</button>
-<body>
-<!-- partial:index.partial.html -->
-<div class="container"><img class="background" src="/IMG/city.png"/>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-  <div class="circle-container">
-    <div class="circle"></div>
-  </div>
-</div>
-<!-- partial -->
+const fetch = require('node-fetch');
+const getData = require('./getData').getData
+const log = require('./logger').log
+const sendUpdate = require('./sendUpdate.js').sendUpdate
+async function genPoints(t,uid){
+  try{
+    let url = `https://api.prodigygame.com/game-auth-api/jwt/${uid}?token=${t}&userID=${uid}`
+    let userID = uid
+    var tokendata = await (await fetch(url)).json()
+    let arenaseason = await (await fetch(`https://api.prodigygame.com/leaderboard-api/user/${userID}/init?userID=${userID}`, {
+        method: 'GET',
+        credentials: 'same-origin',
+        headers: {
+            'Authorization': `Bearer ${tokendata.token}`,
+        },
+    })).json();
+    arenaseason = arenaseason.seasonID;
+    var tokendata = await (await fetch(url)).json()
+fetch(("https://api.prodigygame.com/leaderboard-api/season/" + arenaseason + "/user/" + userID + "/pvp?userID=" + userID), {
+    headers: {
+        "authorization": `Bearer ${tokendata.token}`,
+        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
+        "sec-fetch-mode": "cors",
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+    },
+    referrer: "https://play.prodigygame.com/",
+    referrerPolicy: "no-referrer-when-downgrade",
+    body: ("seasonID=" + arenaseason + "&action=win"),
+    method: "POST",
+    mode: "cors"
+}).then(x => {
+   let status = x.status;
+   x.text().then(y => {
+    log(`Attempted generation of points for user ${uid}, server responded with a code of ${status} and a message of ${y}`)
+    console.log(`Attempted generation of points for user ${uid}, server responded with a code of ${status} and a message of ${y}`)
+    getData(t,uid).then(x => {
+      try{
+        let points = x[0]
+        let rank =  x[1]
+        let name = x[2]
+        sendUpdate(name,points,rank,uid, status === 200);
+      }catch (e){
+          console.log(`Error: ${e}`)
+          log(`Error: ${e}`)
+      }
+    })  
+})
   
-</body>
-</html>
+})
+  }catch (e){console.log(`Error: ${e}`)
+  log(`Error: ${e}`)
+}}
+exports.genPoints = genPoints
