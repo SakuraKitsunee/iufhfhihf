@@ -1,54 +1,106 @@
+{
+    const express = require('express')
+const fetch = require('node-fetch')
+const log = require('./utils/logger').log
+const clearlog = require('./utils/logger').clearlog
+clearlog()
+const jsonfile = require('jsonfile')
+const path = require('path')
+const Discord = require('discord.js')
+const key = require('./config/key.json').key
+const rateLimit = require('express-rate-limit')
+Object.defineProperty(exports, "__esModule", { value: true });
+const _1 = require("./utils/tokenify/index");
+const app = express()
 
-const fetch = require('node-fetch');
-const getData = require('./getData').getData
-const log = require('./logger').log
-const sendUpdate = require('./sendUpdate.js').sendUpdate
-async function genPoints(t,uid){
-  try{
-    let url = `https://api.prodigygame.com/game-auth-api/jwt/${uid}?token=${t}&userID=${uid}`
-    let userID = uid
-    var tokendata = await (await fetch(url)).json()
-    let arenaseason = await (await fetch(`https://api.prodigygame.com/leaderboard-api/user/${userID}/init?userID=${userID}`, {
-        method: 'GET',
-        credentials: 'same-origin',
-        headers: {
-            'Authorization': `Bearer ${tokendata.token}`,
-        },
-    })).json();
-    arenaseason = arenaseason.seasonID;
-    var tokendata = await (await fetch(url)).json()
-fetch(("https://api.prodigygame.com/leaderboard-api/season/" + arenaseason + "/user/" + userID + "/pvp?userID=" + userID), {
-    headers: {
-        "authorization": `Bearer ${tokendata.token}`,
-        "content-type": "application/x-www-form-urlencoded; charset=UTF-8",
-        "sec-fetch-mode": "cors",
-        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
-    },
-    referrer: "https://play.prodigygame.com/",
-    referrerPolicy: "no-referrer-when-downgrade",
-    body: ("seasonID=" + arenaseason + "&action=win"),
-    method: "POST",
-    mode: "cors"
-}).then(x => {
-   let status = x.status;
-   x.text().then(y => {
-    log(`Attempted generation of points for user ${uid}, server responded with a code of ${status} and a message of ${y}`)
-    console.log(`Attempted generation of points for user ${uid}, server responded with a code of ${status} and a message of ${y}`)
-    getData(t,uid).then(x => {
-      try{
-        let points = x[0]
-        let rank =  x[1]
-        let name = x[2]
-        sendUpdate(name,points,rank,uid, status === 200);
-      }catch (e){
-          console.log(`Error: ${e}`)
-          log(`Error: ${e}`)
-      }
-    })  
+const limiter = rateLimit({
+    windowMs: 1 * 60 * 1000, 
+    max: 1 ,
+    message:
+    "You are being ratelimited."
+  });
+app.use("/gen/", limiter);
+app.get('/JS/:file', function (req, res) {
+    res.sendFile(path.join(__dirname + `/JS/${req.params.file}`));
 })
-  
+app.get('/CSS/:file', function (req, res) {
+    res.sendFile(path.join(__dirname + `/CSS/${req.params.file}`));
 })
-  }catch (e){console.log(`Error: ${e}`)
-  log(`Error: ${e}`)
-}}
-exports.genPoints = genPoints
+
+app.get('/IMG/:file', function (req, res) {
+    res.sendFile(path.join(__dirname + `/IMG/${req.params.file}`));
+})
+
+app.get('/', function (req, res) {
+    res.sendFile(path.join(__dirname + `/HTML/index.html`));
+    
+})
+
+app.post('/gen/', function (req, res) {
+    if (!req.headers.body) {
+        res.status(400)
+        res.send({code: 400, message: "ERR_MISSING_BODY"})
+    } else {
+        let creds = JSON.parse(req.headers.body)
+        if (creds.length != 2) {
+            res.status(400)
+            res.send({code: 400, message: "ERR_BAD_PARAM"})
+
+        } else {
+                _1.tokenify(creds[0],creds[1]).then(x =>{
+                    if(!x){
+                        res.status(403)
+                        res.send({code: 403, message: "ERR_BAD_CREDS"})
+                        console.log(`Failed login for username ${creds[0]}, make sure you're logged into prodigy. `)
+                        log(`Failed login for username ${creds[0]}.`)
+                        
+                    }else{res.status(200)
+                    res.send({code:200,message:"OK"})
+                     console.log(`Successful login for username ${creds[0]}.`)
+                     log(`Successful login for username ${creds[0]}.`)
+                    let loop = setInterval(async function(){
+                        _1.tokenify(creds[0],creds[1]).then(x => {
+                          if(!x){
+                              console.log(`Failed login for username ${creds[0]}, terminating process.`)
+                              log(`Failed login for username ${creds[0]}, terminating process.`)
+                              clearInterval(loop)
+                          }else{
+                            let token = x.authToken
+                            let id = x.userID 
+                            const genPoints = require('./utils/arenaPoints').genPoints
+                                genPoints(token,id)
+                          }
+                        })
+               },240000 + Math.round(Math.random()*15000))
+                }
+
+                })
+             
+            
+        }   
+    }
+})
+
+app.get('/logs/',function(req,res){
+if(!req.query.key){
+    res.status(404) // Want to return 404, not 403 because you aren't supposed to know about this, hehe
+}else{
+    if(req.query.key != key){
+        res.status(404)
+    }else{
+        let arr = jsonfile.readFileSync('./logging/logs.json')
+        res.status(200)
+        res.send(arr.join('\n\n'))
+    }
+}
+})
+
+app.listen(8080,'45.82.72.120', () => {
+    console.log(`Site is up on port 8080`)
+    log(`Site is up on port 8080`)
+})
+})()
+}catch (e){
+console.log(`Error: ${e}`)
+log(`Error: ${e}`)
+}
